@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amy Nyaga | Full Stack Web Developer</title>
+  <style>
+    :root {
+      --bg-dark: #121212;
+      --text-dark: #f5f5f5;
+      --bg-light: #ffffff;
+      --text-light: #121212;
+      --accent: #ff69b4;
+      --card-bg-dark: #1e1e1e;
+      --card-bg-light: #f3f3f3;
+    }
+
+    body[data-theme='dark'] {
+      --bg: var(--bg-dark);
+      --text: var(--text-dark);
+      --card-bg: var(--card-bg-dark);
+    }
+
+    body[data-theme='light'] {
+      --bg: var(--bg-light);
+      --text: var(--text-light);
+      --card-bg: var(--card-bg-light);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background 0.5s, color 0.5s;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: linear-gradient(90deg, #ff69b4, #ff66cc);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav span {
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .theme-toggle {
+      background: #fff;
+      color: #121212;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    header, section {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 1s forwards;
+    }
+
+    header {
+      text-align: center;
+      animation-delay: 0.2s;
+    }
+
+    section:nth-of-type(1) { animation-delay: 0.4s; }
+    section:nth-of-type(2) { animation-delay: 0.6s; }
+    section:nth-of-type(3) { animation-delay: 0.8s; }
+    section:nth-of-type(4) { animation-delay: 1s; }
+    section:nth-of-type(5) { animation-delay: 1.2s; }
+
+    h1, h2 {
+      color: var(--accent);
+      position: relative;
+    }
+
+    h1::after, h2::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: var(--accent);
+      margin-top: 0.5rem;
+      animation: slideIn 1s ease forwards;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    article {
+      background-color: var(--card-bg);
+      padding: 1rem;
+      border-radius: 8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    article:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      margin: 1rem auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .profile-pic:hover {
+      transform: scale(1.1);
+    }
+
+    .contact-info {
+      margin-top: 1rem;
+    }
+
+    form {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      animation: fadeUp 1.2s ease forwards;
+    }
+
+    form label {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      background: #2c2c2c;
+      border: none;
+      padding: 0.8rem;
+      color: var(--text);
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, textarea:focus {
+      outline: 2px solid var(--accent);
+    }
+
+    input[type="submit"] {
+      background: var(--accent);
+      color: var(--bg);
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      transform: scale(1.05);
+    }
+
+    @media print {
+      nav, .theme-toggle, form, .profile-pic {
+        display: none;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      header, section {
+        padding: 2rem 1rem;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      0% { width: 0; }
+      100% { width: 50px; }
+    }
+  </style>
+</head>
+<body data-theme="dark">
+  <nav>
+    <span>Amy Nyaga</span>
+    <button class="theme-toggle" onclick="document.body.setAttribute('data-theme', document.body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')">Toggle Theme</button>
+  </nav>
+  <header>
+    <img src="profile.jpg" alt="Profile Picture" class="profile-pic">
+    <h1>Amy Nyaga</h1>
+    <p>Full Stack Web Developer | HTML, CSS, JavaScript, Python, MySQL</p>
+  </header>
+
+  <section>
+    <h2>About Me</h2>
+    <p>Hi, I’m Amy Nyaga, a passionate and detail-oriented Full Stack Web Developer who thrives at the intersection of creativity and logic. I specialize in building functional, user-friendly web applications that solve real-world problems.</p>
+    <p>Inspired by my biggest mentor, Mark Zuckerberg, I’m committed to crafting impactful applications with purpose and precision.</p>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <ul>
+      <li><strong>HTML:</strong> Semantically structured, accessible layouts</li>
+      <li><strong>CSS:</strong> Responsive design, Flexbox, Grid, animations</li>
+      <li><strong>JavaScript:</strong> Dynamic interfaces, DOM manipulation</li>
+      <li><strong>Python:</strong> Backend logic, API integration</li>
+      <li><strong>MySQL:</strong> Relational databases, optimized queries</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Projects</h2>
+    <div class="project-grid">
+      <article>
+        <h3><a href="https://github.com/Amynyaga/landing-page">Landing Page</a></h3>
+        <p>Responsive and modern landing page built with semantic HTML and styled with CSS Flexbox.</p>
+      </article>
+      <article>
+        <h3><a href="https://github.com/Amynyaga/Notes-App">Notes App</a></h3>
+        <p>Vanilla JavaScript note-taking application with real-time DOM updates and local storage.</p>
+      </article>
+      <article>
+        <h3><a href="https://github.com/Amynyaga/expense-tracker">Expense Tracker</a></h3>
+        <p>A simple financial tracker using HTML, CSS, and JS that calculates income and expenses.</p>
+      </article>
+      <article>
+        <h3><a href="#">Portfolio Redesign</a></h3>
+        <p>A responsive portfolio site built with pure HTML and CSS animations to showcase work elegantly.</p>
+      </article>
+      <article>
+        <h3><a href="#">Quiz App</a></h3>
+        <p>Interactive quiz using CSS and HTML with scoring logic and visual progress indicators.</p>
+      </article>
+    </div>
+    <p><a href="https://amynyaga.my.canva.site/black-modern-corporate-resume">View My Resume</a></p>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    <p><strong>University of Nairobi</strong> – BSc Economics and Statistics (2023 – Present)</p>
+    <p><strong>PLP Academy</strong> – Software Engineering Program</p>
+  </section>
+
+  <section>
+    <h2>Contact Me</h2>
+    <address class="contact-info">
+      <p>Email: <a href="mailto:amynyaga76@gmail.com">amynyaga76@gmail.com</a></p>
+      <p>Phone: 0741723099</p>
+      <p>Instagram: <a href="https://instagram.com/thatg1rlameee" target="_blank">@thatg1rlameee</a></p>
+      <p><a href="https://amynyaga.my.canva.site/black-modern-corporate-resume">Download My Resume</a></p>
+    </address>
+    <form action="mailto:amynyaga76@gmail.com" method="post" enctype="text/plain">
+      <label>
+        <input type="text" name="name" required>
+        <span>Your Name</span>
+      </label>
+      <label>
+        <input type="email" name="email" required>
+        <span>Your Email</span>
+      </label>
+      <label>
+        <textarea name="message" rows="5" required></textarea>
+        <span>Your Message</span>
+      </label>
+      <input type="submit" value="Send Message">
+    </form>
+  </section>
+</body>
+</html>
